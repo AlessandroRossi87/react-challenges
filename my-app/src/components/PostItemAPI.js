@@ -17,4 +17,4 @@ function PostItem(props) {
     )
 }
 
-export default PostItemAPI
+export default PostItem

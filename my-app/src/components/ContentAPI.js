@@ -17,18 +17,24 @@ export class Content extends Component {
     }
 
     componentDidMount() {
-        this.fetchImages()
+        this.fetchImages();
     }
 
     async fetchImages() {
         const response = await axios.get(`my-app/src/components/PostItem.js`);
         const fetchedPosts = response.data.hits;
+
+        this.setState({
+            isLoaded: true,
+            posts: fetchedPosts,
+            savedPosts: fetchedPosts,
+        })
     }
 
     handleChange = (e) => {
         const name = e.target.value.toLowerCase();
-        const filteredPosts = savedPosts.filter((post)=>{
-            return post.name.toLowerCase().includes(name);
+        const filteredPosts = this.savedPosts.filter((post)=>{
+            return post.user.toLowerCase().includes(name);
         })
         
         this.setState({
@@ -66,4 +72,4 @@ export class Content extends Component {
     }
 }
 
-export default ContentAPI
+export default Content
